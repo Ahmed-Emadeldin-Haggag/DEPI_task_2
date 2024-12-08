@@ -4,15 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.appcompat.app.AppCompatActivity
-import com.example.movielistscreens.databinding.LoginBinding
+import com.example.movielistscreens.databinding.SigninBinding
 
 class SignInActivity : AppCompatActivity() {
 
-    private lateinit var binding: LoginBinding
+    private lateinit var binding: SigninBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = LoginBinding.inflate(layoutInflater)
+        binding = SigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.signinbutton.setOnClickListener {
@@ -24,13 +24,14 @@ class SignInActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("username", username)
                 startActivity(intent)
-                finish() // To close the current SignIn activity and prevent returning to it
+                finish()
             }
         }
     }
 
     private fun isValidInput(username: String, password: String): Boolean {
 
+        // Check if the user name is not empty
         if (TextUtils.isEmpty(username)) {
             binding.username.error = "Username cannot be empty"
             return false
